@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculador de Probabilidade</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  
+  <section class="container">
+    <div class="container-main">
+      <div class="main">
+        <h1>Escolha a Distribuição</h1>
+        <div class="check">
+          <select id="distribuicao" class="input">
+            <option value="binomial">Binomial</option>
+            <option value="uniforme">Uniforme</option>
+            <option value="geometrica">Geométrica</option>
+            <option value="poisson">Poisson</option>
+          </select>
+          
+          <div class="check content-parametros">
+            <div class="input">
+              <input class="input" type="number" id="n" placeholder="n">
+            </div>
+            <div class="input">
+              <input class="input" type="number" id="k" placeholder="k">
+            </div>
+            <div class="input">
+              <input class="input" type="number" id="p" placeholder="p">
+            </div>
+          </div>
+
+          <button class="btn">Calcular</button>
+        </div>
+      </div>
+    </div>
+  </select>
+
+  <script type="module" src="./js/script.js"></script>
+  <script type="module" src="./js/math_VAD.mjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
