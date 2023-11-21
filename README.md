@@ -37,7 +37,7 @@ Desenvolvido durante o curso de Análise e Desenvolvimento de Sistemas como requ
   - [x] Poisson
   - [x] Geometrica
   - [x] Uniforme
-- [ ] Gráficos das função de probabilidade acumulada
+- [x] Gráficos das função de probabilidade acumulada
 
 ## :technologist: Autor e Contribuidores
 
