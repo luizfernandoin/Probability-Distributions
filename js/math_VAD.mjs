@@ -1,5 +1,23 @@
 function fatorial(num) {
-    return (num === 1 || num === 0) ? 1 : num * fatorial(num-1);
+    if (num < 0) 
+        return -1;
+    else if (num == 0) 
+        return 1;
+    else {
+        return (num * fatorial(num - 1));
+    }
+}
+
+function fdpAcumulada(fdp) {
+    const acumulada = [];
+    let soma = 0;
+
+    for (const probabilidade of fdp) {
+        soma += probabilidade;
+        acumulada.push(soma);
+    }
+
+    return acumulada;
 }
 
 const Binomial = {
@@ -14,7 +32,7 @@ const Binomial = {
         const labels = [];
         const probabilities = [];
 
-        for (let x = 0; this.binomial(n, x, p) > 9e-4 || x < k; x++) {
+        for (let x = 0; this.binomial(n, x, p) > 9e-4 || x <= k; x++) {
             probabilities.push(this.binomial(n, x, p));
             labels.push(x)
         }
@@ -45,7 +63,7 @@ const Poisson = {
         const labels = [];
         const probabilities = [];
 
-        for (let x = 0; this.poisson(lambda, x) > 9e-4 || x < k; x++) {
+        for (let x = 0; this.poisson(lambda, x) > 9e-4 || x <= k; x++) {
             probabilities.push(this.poisson(lambda, x));
             labels.push(x)
         }
@@ -101,7 +119,6 @@ const Geometrica = {
             labels.push(x)
         }
         
-        console.log(labels, probabilities);
         return [labels, probabilities];
     },
 
@@ -118,4 +135,4 @@ const Geometrica = {
     }
 }
 
-export {Binomial, Poisson, Uniforme, Geometrica};
+export {Binomial, Poisson, Uniforme, Geometrica, fdpAcumulada};
