@@ -48,13 +48,15 @@ function gerarGrafico(event) {
             let k = parseInt(document.getElementById('k').value);
             let n = parseInt(document.getElementById('n').value);
 
-            erro = isNaN(p) || isNaN(k) || isNaN(n) || n < k;
+            erro = isNaN(p) || isNaN(k) || isNaN(n);
 
             if (!erro) {
-                qualDistribuicao = Binomial.fdp(n, k, p);
-                probabilidade = [k, Binomial.binomial(n, k, p)];
-            } else {
-                exibirErro("O número de sucessos não deve ser maior que o número de tentativas.");
+                if (n < k || 1 < p < 0 || n < 0 || k < 0) {
+                    exibirErro("Os valores estão em intervalos invalidos!");
+                } else {
+                    qualDistribuicao = Binomial.fdp(n, k, p);
+                    probabilidade = [k, Binomial.binomial(n, k, p)];
+                }
             }
             break;
         case "uniforme":
@@ -63,8 +65,12 @@ function gerarGrafico(event) {
             erro = isNaN(n_uniforme);
 
             if (!erro) {
-                qualDistribuicao = Uniforme.fdp(n_uniforme);
-                probabilidade = [n_uniforme, Uniforme.uniforme(n_uniforme)];
+                if (n_uniforme <= 0) {
+                    exibirErro("O valor está em intervalo invalido!");
+                } else {
+                    qualDistribuicao = Uniforme.fdp(n_uniforme);
+                    probabilidade = [n_uniforme, Uniforme.uniforme(n_uniforme)];
+                }
             }
             break;
         case "geometrica":
@@ -74,21 +80,27 @@ function gerarGrafico(event) {
             erro = isNaN(p_geometrica) || isNaN(k_geometrica);
 
             if (!erro) {
-                qualDistribuicao = Geometrica.fdp(p_geometrica, k_geometrica);
-                probabilidade = [k_geometrica, Geometrica.geometrica(p_geometrica, k_geometrica)];
+                if (1 < p_geometrica < 0 || k_geometrica <= 0) {
+                    exibirErro("Os valores estão em intervalos invalidos!");
+                } else {
+                    qualDistribuicao = Geometrica.fdp(p_geometrica, k_geometrica);
+                    probabilidade = [k_geometrica, Geometrica.geometrica(p_geometrica, k_geometrica)];
+                }
             }
             break;
         case "poisson":
             let k_poisson = parseInt(document.getElementById('k').value);
             let lambda_poisson = parseInt(document.getElementById('lambda').value);
 
-            erro = isNaN(k_poisson) || isNaN(lambda_poisson) || lambda_poisson <= 0;
+            erro = isNaN(k_poisson) || isNaN(lambda_poisson);
 
             if (!erro) {
-                qualDistribuicao = Poisson.fdp(lambda_poisson, k_poisson);
-                probabilidade = [k_poisson, Poisson.poisson(lambda_poisson, k_poisson)];
-            } else {
-                exibirErro("Valor informado incorreto!");
+                if (k_poisson < 0 || lambda_poisson <= 0) {
+                    exibirErro("Os valores estão em intervalos invalidos!");
+                } else {
+                    qualDistribuicao = Poisson.fdp(lambda_poisson, k_poisson);
+                    probabilidade = [k_poisson, Poisson.poisson(lambda_poisson, k_poisson)];
+                }
             }
             break;
     }
